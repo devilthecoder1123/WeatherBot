@@ -1,126 +1,186 @@
-# Telegram Weather Bot
+<div align="center">
 
-A simple Telegram bot that provides weather updates with an admin panel for management.
+# 🌤️ PK Weather Bot
 
-## Features
+**A modern, feature-rich Telegram bot that provides daily weather updates with a powerful admin dashboard**
 
-### Bot Features
-- Subscribe/unsubscribe to daily weather updates
-- Get current weather for any city
-- Daily weather notifications at 8 AM
-- Simple command interface
 
-### Admin Panel Features
-- Dashboard with user statistics
-- User management (view, block, delete users)
-- Bot settings configuration
-- Message template customization
+</div>
 
-## Setup Instructions
 
-### 1. Get Bot Token
-1. Message @BotFather on Telegram
-2. Create a new bot with `/newbot`
-3. Copy the bot token
 
-### 2. Get Weather API Key
-1. Sign up at [OpenWeatherMap](https://openweathermap.org/api)
-2. Get your free API key
+## ✨ Features
 
-### 3. Install Dependencies
+### 🤖 **Bot Features**
+- 📱 **Easy Subscription Management** - Users can subscribe/unsubscribe with simple commands
+- 🌍 **Real-time Weather Data** - Get current weather for any city worldwide
+- ⏰ **Daily Notifications** - Automated weather updates at customizable times
+- 🎯 **Smart City Recognition** - Handles city names without commands
+- 🔒 **User Management** - Block/unblock functionality for admins
+
+---
+
+## 🎯 Demo
+
+### Bot Interface
+```
+🌤️ Welcome to PK Weather Bot (@pkweather_bot)!
+
+I can help you get daily weather updates for your location.
+
+Available commands:
+/subscribe - Subscribe to daily weather updates
+/unsubscribe - Unsubscribe from updates
+/weather [city] - Get current weather for a city
+/help - Show this help message
+
+Type /subscribe to get started!
+```
+
+
+## 🚀 Quick Start
+
 ```bash
+
+# Clone the repository
+git clone https://github.com/yourusername/weatherbot.git
+
+# Install dependencies
 npm install
+
+# Set up environment variables
+cp .env.example .env
+# Edit .env with your tokens
+
+# Start all services
+npm run dev    # Admin panel (http://localhost:5173)
+npm run server # API server (http://localhost:3001)
+npm run bot    # Telegram bot
 ```
 
-### 4. Configure Environment Variables
-Create a `.env` file:
-```
-BOT_TOKEN=your_bot_token_here
-WEATHER_API_KEY=your_weather_api_key_here
-```
+---
 
-### 5. Start the Application
+## 📦 Installation
 
-Start the admin panel:
+### Prerequisites
+
+- **Node.js** 18+ ([Download](https://nodejs.org/))
+- **npm** or **yarn**
+- **Telegram Bot Token** from [@BotFather](https://t.me/BotFather)
+- **OpenWeatherMap API Key** ([Get Free Key](https://openweathermap.org/api))
+
+### Step-by-Step Setup
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/weatherbot.git
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Environment setup**
+   ```bash
+   cp .env.example .env
+   ```
+
+4. **Configure your tokens** (edit `.env`)
+   ```env
+   BOT_TOKEN=your_bot_token_from_botfather
+   WEATHER_API_KEY=your_openweathermap_api_key
+   PORT=3001
+   ```
+
+
+## 🎮 Usage
+
+### Starting the Application
+
 ```bash
+# Terminal 1 - Start the admin panel
 npm run dev
-```
 
-Start the API server:
-```bash
+# Terminal 2 - Start the API server
 npm run server
-```
 
-Start the bot:
-```bash
+# Terminal 3 - Start the Telegram bot
 npm run bot
 ```
 
-## Bot Commands
+### Accessing the Admin Panel
 
-- `/start` - Start the bot and see welcome message
-- `/subscribe` - Subscribe to daily weather updates
-- `/unsubscribe` - Unsubscribe from updates
-- `/weather [city]` - Get current weather for a city
-- `/help` - Show help message
+Open your browser and navigate to:
+- **Local**: http://localhost:5173
+- **Dashboard**: View user statistics and bot status
+- **Users**: Manage all bot users
+- **Settings**: Configure bot tokens and messages
 
-## Admin Panel
+---
 
-Access the admin panel at `http://localhost:5173`
+## 🤖 Bot Commands
+
+**Bot Handle**: [@pkweather_bot](https://t.me/pkweather_bot)
+
+| Command | Description | Example |
+|---------|-------------|---------|
+| `/start` | Initialize the bot and show welcome message | `/start` |
+| `/subscribe` | Subscribe to daily weather updates | `/subscribe` |
+| `/unsubscribe` | Unsubscribe from weather notifications | `/unsubscribe` |
+| `/weather [city]` | Get current weather for specified city | `/weather London` |
+| `/help` | Display help message with all commands | `/help` |
+
+
+---
+
+## 📊 Admin Panel
 
 ### Dashboard
-- View total users, subscribed users, active users
-- Quick setup guide
+- 📈 **User Statistics**: Total, subscribed, active, and blocked users
+- 🔄 **Real-time Updates**: Auto-refresh every 30 seconds
+- 🚀 **Quick Setup Guide**: Step-by-step bot configuration
+- 📊 **System Status**: Monitor bot and API health
 
 ### User Management
-- View all users
-- Search and filter users
-- Block/unblock users
-- Delete users
+- 👥 **User List**: View all bot users with details
+- 🔍 **Search & Filter**: Find users by name, username, or ID
+- 🚫 **Block/Unblock**: Manage user access
+- 🗑️ **Delete Users**: Remove users from database
 
-### Bot Settings
-- Configure bot token and weather API key
-- Customize message templates
-- Set notification time
-- Enable/disable notifications
+---
 
-## Database
 
-The bot uses SQLite database (`weather_bot.db`) to store:
-- User information
-- Subscription status
-- Bot settings
+## 🏗️ Architecture
 
-## API Endpoints
+```
+pkweatherbot/
+├── 📁 src/                    # React frontend
+│   ├── 📁 components/         # React components
+│   ├── 📄 App.tsx            # Main app component
+│   └── 📄 main.tsx           # App entry point
+├── 📁 server/                 # Node.js backend
+│   ├── 📄 bot.js             # Telegram bot logic
+│   ├── 📄 server.js          # Express API server
+│   └── 📄 database.js        # SQLite database layer
+├── 📄 package.json           # Dependencies
+├── 📄 .env.example           # Environment template
+└── 📄 README.md              # This file
+```
 
-- `GET /api/stats` - Get dashboard statistics
-- `GET /api/users` - Get all users
-- `POST /api/users/:chatId/block` - Block a user
-- `POST /api/users/:chatId/unblock` - Unblock a user
-- `DELETE /api/users/:chatId` - Delete a user
-- `GET /api/settings` - Get bot settings
-- `PUT /api/settings` - Update bot settings
+### Tech Stack
 
-## Deployment
+**Frontend**
+- ⚛️ React 18 with TypeScript
+- 🎨 Tailwind CSS for styling
+- 🎯 Lucide React for icons
+- 📱 Responsive design
 
-### Bot Deployment
-1. Deploy the bot code to any Node.js hosting service
-2. Set environment variables
-3. Keep the bot running 24/7
+**Backend**
+- 🟢 Node.js with Express
+- 🗄️ SQLite database
+- 🤖 node-telegram-bot-api
+- 🌤️ OpenWeatherMap API
 
-### Admin Panel Deployment
-1. Build the admin panel: `npm run build`
-2. Deploy the `dist` folder to any static hosting service
-3. Update API endpoints in the frontend code
-
-## Technologies Used
-
-- **Frontend**: React, TypeScript, Tailwind CSS
-- **Backend**: Node.js, Express
-- **Bot**: node-telegram-bot-api
-- **Database**: SQLite
-- **Weather API**: OpenWeatherMap
-
-## License
-
-MIT License
+---
+</div>
